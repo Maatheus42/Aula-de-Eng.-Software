@@ -1,0 +1,7 @@
+a. Sempre crie uma branch separada para cada nova funcionalidade ou correção de bug que você estiver trabalhando.
+b. Nomeie as branches de forma descritiva, indicando qual funcionalidade ou bug elas estão abordando.
+c. Faça commits frequentes e descritivos, indicando claramente o que foi alterado.
+d. Antes de enviar uma solicitação de pull request ou merge request, certifique-se de que o código está devidamente testado e funciona conforme o esperado.
+e. Utilize ferramentas de integração contínua e revisão de código para garantir que o código enviado atenda aos padrões de qualidade da equipe.
+f. Sempre revise o código de seus colegas e dê feedback construtivo para ajudá-los a melhorar.
+g. Documente bem o seu código e mantenha a documentação atualizada à medida que o projeto evolui
