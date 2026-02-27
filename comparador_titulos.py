@@ -240,8 +240,11 @@ def main(argv: Iterable[str] | None = None) -> int:
     parser = construir_parser()
     args = parser.parse_args(list(argv) if argv is not None else None)
 
-    if args.interativo or not (args.sistema and args.pdf):
+    if args.interativo:
         return executar_modo_interativo(args.nivel)
+
+    if args.sistema is None or args.pdf is None:
+        parser.error("os argumentos --sistema e --pdf são obrigatórios sem --interativo")
 
     resultado = comparar_titulos(args.sistema, args.pdf)
     print(gerar_relatorio(resultado, args.nivel))

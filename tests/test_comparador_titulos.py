@@ -1,7 +1,9 @@
 import unittest
+from unittest.mock import patch
 
 from comparador_titulos import (
     comparar_titulos,
+    main,
     normalizar_texto_para_comparacao,
     normalizar_texto_para_exibicao,
 )
@@ -30,6 +32,20 @@ class ComparadorTitulosTests(unittest.TestCase):
         self.assertFalse(resultado.sao_iguais)
         self.assertIsNotNone(resultado.primeira_diferenca_indice)
         self.assertGreaterEqual(len(resultado.diferencas), 1)
+
+    def test_cli_falha_quando_argumento_obrigatorio_ausente_sem_interativo(self):
+        with self.assertRaises(SystemExit) as exc, patch("comparador_titulos.executar_modo_interativo") as interativo:
+            main(["--sistema", "Título presente"])
+
+        self.assertEqual(exc.exception.code, 2)
+        interativo.assert_not_called()
+
+    def test_cli_interativo_so_quando_flag_ativada(self):
+        with patch("comparador_titulos.executar_modo_interativo", return_value=0) as interativo:
+            retorno = main(["--interativo"])
+
+        self.assertEqual(retorno, 0)
+        interativo.assert_called_once_with("completo")
 
 
 if __name__ == "__main__":
